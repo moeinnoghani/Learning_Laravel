@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->text('body', 255);
             $table->string('status', 20);
             $table->dateTime('sent_at')->nullable();
-            $table->dateTime('created_at');
+            $table->dateTime('created_at')->useCurrent();
         });
     }
 
