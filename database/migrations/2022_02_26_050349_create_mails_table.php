@@ -17,10 +17,9 @@ return new class extends Migration {
             $table->string('email', 255);
             $table->string('subject', 255);
             $table->text('body', 255);
-            $table->string('body', 10);
+            $table->string('status', 20);
             $table->dateTime('sent_at')->nullable();
             $table->dateTime('created_at');
-
         });
     }
 
