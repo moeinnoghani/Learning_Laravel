@@ -14,11 +14,12 @@ return new class extends Migration {
     {
         Schema::create('mails', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->string('email');
-            $table->string('subject');
-            $table->text('body');
+            $table->string('email', 255);
+            $table->string('subject', 255);
+            $table->text('body', 255);
+            $table->string('body', 10);
+            $table->dateTime('sent_at')->nullable();
             $table->dateTime('created_at');
-            $table->dateTime('sent_at');
 
         });
     }
