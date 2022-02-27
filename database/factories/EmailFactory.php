@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Email;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class EmailFactory extends Factory
 {
+
     /**
      * Define the model's default state.
      *
@@ -19,8 +21,13 @@ class EmailFactory extends Factory
         return [
             'email' => $this->faker->email(),
             'subject' => $this->faker->text(30),
-            'body' => $this->faker->text(400),
-            'status' => $this->faker->randomElement(['pending', 'sent', 'cancelled'])
+            'body' => $this->faker->text(200),
+            'status' => $this->faker->randomElement(
+                [Email::STATUS_CANCELLED,
+                    EMail::STATUS_FAILED,
+                    Email::STATUS_SENT,
+                    Email::STATUS_PENDING
+                ])
         ];
     }
 }

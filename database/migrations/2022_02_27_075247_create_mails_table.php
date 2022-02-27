@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->string('status', 20);
             $table->dateTime('sent_at')->nullable();
             $table->dateTime('created_at')->useCurrent();
+
         });
     }
 
