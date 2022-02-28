@@ -12,19 +12,20 @@ class EmailController extends Controller
 
     public function __construct()
     {
-        $this-> emailRepository = new EmailRepository();
+        $this->emailRepository = new EmailRepository();
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'email' => 'required|array',
             'email.*' => 'email',
             'subject' => 'required|string',
             'body' => 'required|string',
 
         ]);
-
+//        $this->emailRepository->create($validatedData);
+         $this->emailRepository->create($request->only(['email', 'subject', 'body']));
 
     }
 }

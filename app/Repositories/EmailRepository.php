@@ -17,6 +17,7 @@ class EmailRepository
 
     public function create($request)
     {
+        $request['status'] = Email::STATUS_PENDING;
         return $this->model->create($request);
     }
 }
