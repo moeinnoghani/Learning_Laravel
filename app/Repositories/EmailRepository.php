@@ -7,7 +7,6 @@ use App\Models\Email;
 class EmailRepository
 {
 
-
     private Email $model;
 
     public function __construct()
@@ -19,5 +18,10 @@ class EmailRepository
     {
         $request['status'] = Email::STATUS_PENDING;
         return $this->model->create($request);
+    }
+
+    public function getPending($limit = 5)
+    {
+        return $this->model->where('status', Email::STATUS_PENDING)->limit($limit)->get();
     }
 }

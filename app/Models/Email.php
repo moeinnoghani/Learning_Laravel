@@ -19,8 +19,5 @@ class Email extends Model
 
     protected $fillable = ['email', 'subject', 'body', 'status', 'sent_at'];
 
-    public function create($request)
-    {
-//        return $request;
-    }
+
 }

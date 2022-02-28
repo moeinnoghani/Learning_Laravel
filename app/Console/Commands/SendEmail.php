@@ -2,6 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Email;
+use App\Repositories\EmailRepository;
+use App\Services\EmailService;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class SendEmail extends Command
@@ -20,6 +24,9 @@ class SendEmail extends Command
      */
     protected $description = 'to send emails';
 
+    private EmailRepository $emailRepository;
+    private EmailService $emailService;
+
     /**
      * Create a new command instance.
      *
@@ -28,6 +35,9 @@ class SendEmail extends Command
     public function __construct()
     {
         parent::__construct();
+
+        $this->emailRepository = new EmailRepository();
+        $this->emailService = new EmailService();
     }
 
     /**
@@ -37,6 +47,13 @@ class SendEmail extends Command
      */
     public function handle()
     {
-        return 0;
+        $emailInPending = $this->emailRepository->getPending(10);
+        $emailInPending->each(function ($email) {
+            if ($this->emailService->send($email->email, $email->subject, $email->body)) {
+                $email->status = Email::STATUS_SENT;
+                $email->sent_at = Carbon::now()->format('Y-m-d H:i:s');
+                $email->save();
+            }
+        });
     }
 }

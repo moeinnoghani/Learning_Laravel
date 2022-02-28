@@ -25,7 +25,7 @@ class EmailController extends Controller
 
         ]);
 //        $this->emailRepository->create($validatedData);
-         $this->emailRepository->create($request->only(['email', 'subject', 'body']));
+        $this->emailRepository->create($request->only(['email', 'subject', 'body']));
 
     }
 }
