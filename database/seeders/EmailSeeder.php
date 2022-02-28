@@ -18,3 +18,5 @@ class EmailSeeder extends Seeder
         Email::factory()->count(10)->create();
     }
 }
+
+
