@@ -24,4 +24,9 @@ class EmailRepository
     {
         return $this->model->where('status', Email::STATUS_PENDING)->limit($limit)->get();
     }
+
+    public function update(Email $email, $updateParams)
+    {
+        return $email->update($updateParams);
+    }
 }

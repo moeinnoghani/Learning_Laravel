@@ -48,11 +48,12 @@ class SendEmail extends Command
     public function handle()
     {
         $emailInPending = $this->emailRepository->getPending(10);
-        $emailInPending->each(function ($email) {
+        $emailInPending->each(function ($email, $updateParams) {
             if ($this->emailService->send($email->email, $email->subject, $email->body)) {
-                $email->status = Email::STATUS_SENT;
-                $email->sent_at = Carbon::now()->format('Y-m-d H:i:s');
-                $email->save();
+                $this->emailRepository->update($email, [
+                    'status' => Email::STATUS_SENT,
+                    'sent_at' => Carbon::now()
+                ]);
             }
         });
     }

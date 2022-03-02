@@ -18,14 +18,13 @@ class EmailService
         try {
             $this->mail->SMTPDebug = false;
             $this->mail->isSMTP();
-            $this->mail->host = Facades\Config::get('MAIL_HOST');
+            $this->mail->Host = env('MAIL_HOST');
             $this->mail->SMTPAuth = true;
-            $this->mail->Username = Facades\Config::get('MAIL_USERNAME');
-            $this->mail->Password = Facades\Config::get('MAIL_PASSWORD');
-            $this->mail->SMTPSecure = Facades\Config::get('MAIL_ENCRYPTION');
-            $this->mail->Port = Facades\Config::get('MAIL_PORT');
-            $this->mail->setFrom(Facades\Config::get('MAIL_FROM_ADDRESS'),
-                Facades\Config::get('MAIL_FROM_NAME'));
+            $this->mail->Username = env('MAIL_USERNAME');
+            $this->mail->Password = env('MAIL_PASSWORD');
+            $this->mail->SMTPSecure = env('MAIL_ENCRYPTION');
+            $this->mail->Port = env('MAIL_PORT');
+            $this->mail->setFrom('MAIL_FROM_ADDRESS','MAIL_FROM_NAME');
 
 
         } catch (\Exception $e) {
