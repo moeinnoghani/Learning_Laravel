@@ -2,11 +2,13 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\WelcomeUserMail;
 use App\Models\Email;
 use App\Repositories\EmailRepository;
 use App\Services\EmailService;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 
 class SendEmail extends Command
 {
@@ -49,6 +51,8 @@ class SendEmail extends Command
     {
         $emailInPending = $this->emailRepository->getPending(10);
         $emailInPending->each(function ($email, $updateParams) {
+
+            Mail::to('moeinnoghani@yahoo.com')->send(new WelcomeUserMail());
             if ($this->emailService->send($email->email, $email->subject, $email->body)) {
                 $this->emailRepository->update($email, [
                     'status' => Email::STATUS_SENT,

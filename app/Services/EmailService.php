@@ -38,6 +38,6 @@ class EmailService
         $this->mail->Subject = $subject;
         $this->mail->Body = $body;
 
-        return $this->send($to, $subject, $body);
+        return $this->mail->send($to, $subject, $body);
     }
 }
