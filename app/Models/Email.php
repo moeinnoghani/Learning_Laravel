@@ -17,6 +17,10 @@ class Email extends Model
     public $timestamps = false;
     protected $table = 'mails';
 
+//    protected $casts = [
+//        'email' => 'array'
+//    ];
+
     protected $fillable = ['email', 'subject', 'body', 'status', 'sent_at'];
 
 

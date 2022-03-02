@@ -49,19 +49,21 @@ class SendEmail extends Command
      */
     public function handle()
     {
-        $emailInPending = $this->emailRepository->getPending(2);
+        $emailInPending = $this->emailRepository->getPending(20);
 
         $emailInPending->each(function ($email, $updateParams) {
 
-//            Mail::to($email->email)->send(new WelcomeUserMail());
+
+            Mail::to($email->email)->send(new WelcomeUserMail());
             if ($this->emailService->send($email->email, $email->subject, $email->body)) {
-                echo $email->email;
+
                 $this->emailRepository->update($email, [
                     'status' => Email::STATUS_SENT,
                     'sent_at' => Carbon::now()
                 ]);
             }
         });
+
 
     }
 }
