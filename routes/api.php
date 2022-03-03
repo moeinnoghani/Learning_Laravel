@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 Route::any('/email', [\App\Http\Controllers\EmailController::class, 'store']);
 
+Route::post('/send-notif', [\App\Http\Controllers\NotificationController::class, 'send']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
