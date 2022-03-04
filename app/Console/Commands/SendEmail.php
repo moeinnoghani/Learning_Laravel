@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Mail\WelcomeUserMail;
+use App\Mail\UserMailable;
 use App\Models\Email;
 use App\Repositories\EmailRepository;
 use App\Services\EmailService;
@@ -54,7 +54,7 @@ class SendEmail extends Command
         $emailInPending->each(function ($email, $updateParams) {
 
 
-            Mail::to($email->email)->send(new WelcomeUserMail());
+            Mail::to($email->email)->send(new UserMailable());
             if ($this->emailService->send($email->email, $email->subject, $email->body)) {
 
                 $this->emailRepository->update($email, [

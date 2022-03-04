@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class WelcomeUserMail extends Mailable
+class UserMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,6 +28,6 @@ class WelcomeUserMail extends Mailable
      */
     public function build()
     {
-        return $this->view('welcome');
+        return $this->view('mail.user-welcome');
     }
 }

@@ -17,7 +17,8 @@ class EmailController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+
+       $request->validate([
             'email' => 'required|array',
             'email.*' => 'email',
             'subject' => 'required|string',

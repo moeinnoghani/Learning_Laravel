@@ -17,4 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('/','mail.welcome-user');
+//Route::view('/','mail.welcome-user');

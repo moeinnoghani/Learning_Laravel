@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::any('/email', [\App\Http\Controllers\EmailController::class, 'store']);
-
-Route::post('/send-notif', [\App\Http\Controllers\NotificationController::class, 'send']);
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/email', [\App\Http\Controllers\EmailController::class, 'store']);
+
+Route::post('/notification', [\App\Http\Controllers\NotificationController::class, 'send']);
+
 
 
 
