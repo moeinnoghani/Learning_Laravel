@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Mail\UserMailable;
+
 //use http\Env\Request;
 use Illuminate\Http\Request;
 use Illuminate\Bus\Queueable;
@@ -20,19 +21,18 @@ class SendEmailJob implements ShouldQueue
 
     private $email;
     private $template;
-    private $params;
+    private $parameters;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Request $request)
+    public function __construct($request)
     {
-        $this->email = $request->email;
-        $this->template = $request->template;
-        $this->params= $request->parameters;
-
+        $this->email = $request['email'];
+        $this->template = $request['template'];
+        $this->parameters = $request['parameters'];
 
     }
 
@@ -43,7 +43,7 @@ class SendEmailJob implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->email)->send(new UserMailable());
+        Mail::to($this->email)->send(new UserMailable($this->template,$this->parameters));
 
     }
 }

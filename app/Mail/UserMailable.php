@@ -11,14 +11,20 @@ class UserMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $emailTemplate;
+    public array $parameters;
+
+    public $subject = 'This is subject';
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($template, $params)
     {
-        //
+        $this->emailTemplate = $template;
+        $this->parameters = $params;
     }
 
     /**
@@ -28,6 +34,6 @@ class UserMailable extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.user-welcome');
+        return $this->view("mail.{$this->emailTemplate}");
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\SendEmailJob;
-use App\Rules\TemplateValidation;
+use App\Rules\TemplateRule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,13 +15,12 @@ class NotificationController extends Controller
         $request->validate([
             'email' => 'required|array',
             'email.*' => 'email',
-            'fullname' => 'required|string',
             'parameters' => 'required|array',
-            'template' => ['required','string',new TemplateValidation]
+            'template' => ['required','string',new TemplateRule($request)],
         ]);
 
 
-        SendEmailJob::dispatch($request);
+        SendEmailJob::dispatch($request->all());
 
 
     }

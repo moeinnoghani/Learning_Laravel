@@ -1,3 +1,3 @@
 <h2>
-    Welcome Dear User ;)
+    Welcome Dear User {{$parameters['fullname']}};)
 </h2>

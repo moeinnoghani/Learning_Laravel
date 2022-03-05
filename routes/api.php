@@ -20,6 +20,8 @@ Route::post('/email', [\App\Http\Controllers\EmailController::class, 'store']);
 
 Route::post('/notification', [\App\Http\Controllers\NotificationController::class, 'send']);
 
+Route::post('/templates', [\App\Http\Controllers\TemplateController::class, 'index']);
+
 
 
 
