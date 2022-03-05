@@ -17,6 +17,9 @@ class InvoiceCreationRule implements IEmailParametersValidation
         $this->request->validate([
             'parameters.fullname' => 'required|string',
             'parameters.invoice_id' => 'required|integer',
+            'subject_parameters.invoice_id' => 'required|integer',
+            'subject_parameters.price' => 'required|integer',
+
 
         ]);
         return true;

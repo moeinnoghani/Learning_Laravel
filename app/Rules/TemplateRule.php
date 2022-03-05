@@ -34,8 +34,8 @@ class TemplateRule implements Rule
      */
     public function passes($attribute, $value)
     {
-
-        $ruleClassPath = 'App\Rules\Email\\' . Str::studly($value) . 'Rule';
+//dd($value);
+        $ruleClassPath = 'App\Rules\Email\\' . Str::studly($this->request->template) . 'Rule';
         if (class_exists($ruleClassPath)) {
             $templateRule = new $ruleClassPath($this->request);
             if ($templateRule instanceof IEmailParametersValidation) {

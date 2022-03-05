@@ -2,10 +2,12 @@
 
 namespace App\Mail;
 
+use App\Models\Template;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Str;
 
 class UserMailable extends Mailable
 {
@@ -14,17 +16,25 @@ class UserMailable extends Mailable
     private $emailTemplate;
     public array $parameters;
 
-    public $subject = 'This is subject';
+    public $subject;
+    private $request;
+    private $subject_parameters;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($template, $params)
+    public function __construct($template, $request)
     {
+
         $this->emailTemplate = $template;
-        $this->parameters = $params;
+//        $this->subject = $template->subject;
+        $this->parameters = $request['parameters'];
+        $this->subject_parameters = $request['subject_parameters'];
+
+
+       $this->subjectBuilder();
     }
 
     /**
@@ -34,6 +44,17 @@ class UserMailable extends Mailable
      */
     public function build()
     {
-        return $this->view("mail.{$this->emailTemplate}");
+        return $this->view("mail.{$this->emailTemplate['name']}");
+    }
+
+    private function subjectBuilder()
+    {
+        $subject = $this->emailTemplate['subject'];
+
+        collect($this->subject_parameters)->each(function ($value, $key) use (&$subject) {
+            $subject = Str::replace('{'.$key.'}', $value, $subject);
+        });
+
+        $this->subject = $subject;
     }
 }

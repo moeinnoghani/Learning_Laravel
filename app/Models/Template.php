@@ -17,7 +17,7 @@ class Template extends Model
         ];
     protected $fillable = [
         'id',
-        'template_name',
+        'name',
         'subject',
         'view_map',
         'is_active',
