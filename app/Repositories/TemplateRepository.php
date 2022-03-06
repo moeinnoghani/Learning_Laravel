@@ -14,15 +14,25 @@ class TemplateRepository
         $this->model = new Template();
     }
 
-    public function get()
-    {
-
-    }
 
     public function getTemplateByName(string $template)
     {
 //        return $this->model->where('template_name',$template)->first();
         return $this->model->whereName($template)->first();
+    }
+
+    public function index($actives = true)
+    {
+        if ($actives) {
+            return $this->model->where('is_active', $actives)->get();
+        } else {
+            return $this->model->all();
+        }
+    }
+
+    public function get($template_id)
+    {
+        return $this->model->whereId($template_id)->first();
     }
 
 

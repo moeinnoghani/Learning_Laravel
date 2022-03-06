@@ -20,6 +20,8 @@ class UserMailable extends Mailable
     private $request;
     private $subject_parameters;
 
+    private $templateView;
+
     /**
      * Create a new message instance.
      *
@@ -33,8 +35,10 @@ class UserMailable extends Mailable
         $this->parameters = $request['parameters'];
         $this->subject_parameters = $request['subject_parameters'];
 
+        $this->templateView = $this->emailTemplate['view_map'] ?? 'mail' . $this->emailTemplate['name'];
 
-       $this->subjectBuilder();
+
+        $this->subjectBuilder();
     }
 
     /**
@@ -44,7 +48,7 @@ class UserMailable extends Mailable
      */
     public function build()
     {
-        return $this->view("mail.{$this->emailTemplate['name']}");
+        return $this->view($this->templateView);
     }
 
     private function subjectBuilder()
@@ -52,7 +56,7 @@ class UserMailable extends Mailable
         $subject = $this->emailTemplate['subject'];
 
         collect($this->subject_parameters)->each(function ($value, $key) use (&$subject) {
-            $subject = Str::replace('{'.$key.'}', $value, $subject);
+            $subject = Str::replace('{' . $key . '}', $value, $subject);
         });
 
         $this->subject = $subject;
