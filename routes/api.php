@@ -21,8 +21,10 @@ Route::post('/email', [\App\Http\Controllers\EmailController::class, 'store']);
 Route::post('/notification', [\App\Http\Controllers\NotificationController::class, 'send']);
 
 Route::get('/notification/template', [\App\Http\Controllers\TemplateController::class, 'index']);
-Route::get('/notification/template/{id}', [\App\Http\Controllers\TemplateController::class, 'get']);
 
+Route::get('/notification/template/{template_id}', [\App\Http\Controllers\TemplateController::class, 'get']);
+
+Route::post('/sms', [\App\Http\Controllers\SMSController::class, 'send']);
 
 
 
