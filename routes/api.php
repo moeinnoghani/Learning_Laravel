@@ -16,15 +16,19 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
 Route::post('/email', [\App\Http\Controllers\EmailController::class, 'store']);
 
-Route::post('/notification', [\App\Http\Controllers\NotificationController::class, 'send']);
+Route::post('/notification/email', [\App\Http\Controllers\NotificationController::class, 'send']);
 
-Route::get('/notification/template', [\App\Http\Controllers\TemplateController::class, 'index']);
+Route::get('/notification/email/template', [\App\Http\Controllers\TemplateController::class, 'index']);
 
-Route::get('/notification/template/{template_id}', [\App\Http\Controllers\TemplateController::class, 'get']);
+Route::get('/notification/email/template/{template_id}', [\App\Http\Controllers\TemplateController::class, 'get']);
 
-Route::post('/sms', [\App\Http\Controllers\SMSController::class, 'send']);
+Route::post('/notification/sms', [\App\Http\Controllers\SMSController::class, 'send']);
+
+
 
 
 

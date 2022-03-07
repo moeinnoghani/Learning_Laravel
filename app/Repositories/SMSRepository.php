@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\SMS;
 
+
 class SMSRepository
 {
 
@@ -12,6 +13,11 @@ class SMSRepository
     public function __construct()
     {
         $this->model = new SMS();
+    }
+
+    public function getByType($type)
+    {
+       return $this->model->whereType($type)->first();
     }
 
 }
