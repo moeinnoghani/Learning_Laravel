@@ -21,7 +21,9 @@ class TemplateController extends Controller
     public function index()
     {
         return TemplateResource::collection($this->templateRepository->index(false));
+
     }
+
 
     public function get(Template $template_id)
     {

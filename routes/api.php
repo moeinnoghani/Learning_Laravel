@@ -18,15 +18,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::post('/email', [\App\Http\Controllers\EmailController::class, 'store']);
+//Route::post('/email', [\App\Http\Controllers\EmailController::class, 'store']);
+//
+//Route::post('/notification/email', [\App\Http\Controllers\NotificationController::class, 'send']);
+//
+//Route::get('/notification/email/template', [\App\Http\Controllers\TemplateController::class, 'index']);
+//
+//Route::get('/notification/email/template/{template_id}', [\App\Http\Controllers\TemplateController::class, 'get']);
 
-Route::post('/notification/email', [\App\Http\Controllers\NotificationController::class, 'send']);
 
-Route::get('/notification/email/template', [\App\Http\Controllers\TemplateController::class, 'index']);
+Route::middleware(['after_middleware','authenticate'])->prefix('/notification')->group(function () {
 
-Route::get('/notification/email/template/{template_id}', [\App\Http\Controllers\TemplateController::class, 'get']);
+    Route::post('/email', [\App\Http\Controllers\NotificationController::class, 'send']);
+    Route::get('/email/template', [\App\Http\Controllers\TemplateController::class, 'index']);
+    Route::get('/email/template/{template_id}', [\App\Http\Controllers\TemplateController::class, 'get']);
+    Route::post('/sms', [\App\Http\Controllers\SMSController::class, 'send']);
+});
 
-Route::post('/notification/sms', [\App\Http\Controllers\SMSController::class, 'send']);
 
 
 

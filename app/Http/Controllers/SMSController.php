@@ -6,6 +6,7 @@ use App\Jobs\SendEmailJob;
 use App\Jobs\SendSmsJob;
 use App\Models\SMS;
 use App\Repositories\SMSRepository;
+use App\Rules\SmsRule;
 use Illuminate\Http\Request;
 
 class SMSController extends Controller
@@ -25,7 +26,7 @@ class SMSController extends Controller
             'phone_no' => 'required|array',
             'phone_no.*' => 'required|regex:/(0)[0-9]{10}/',
             'type' => 'required',
-            'parameter' => 'required|array'
+            'parameters' => ['required','array',new SmsRule($request)],
         ]);
 
         $sms = $this->smsRepository->getByType($request->type);
@@ -36,6 +37,6 @@ class SMSController extends Controller
             ]);
         }
 
-        SendSmsJob::dispatch($request->all());
+        SendSmsJob::dispatch($sms->toArray(),$request->all());
     }
 }
