@@ -1,0 +1,375 @@
+{
+	"info": {
+		"_postman_id": "dbbceb44-413c-4610-992c-73af4a93afa6",
+		"name": "notification-email",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "list-email",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email[]",
+							"value": "moeinnoghani@yahoo.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email[]",
+							"value": "moeinnoghani@gmail.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email[]",
+							"value": "asdjhaksd@hotmail.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "parameters[fullname]",
+							"value": "Moein Noghani",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "template",
+							"value": "service-creation",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "parameters[tries]",
+							"value": "4",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "parameters[service_id]",
+							"value": "298",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "subject_parameters[service_id]",
+							"value": "298",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "phone_no",
+							"value": "09154056342",
+							"type": "text"
+						},
+						{
+							"key": "sms_type",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "parameter[name]",
+							"value": "معین نوغانی",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/sms",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"sms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send email",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email[]",
+							"value": "mooasda@asd.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/notification/email",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"notification",
+						"email"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add-email",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "moeinnoghani@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "email[]",
+							"value": "moeinnoghani@gmail.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "subject",
+							"value": "hi user",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "alhdliaufghblai98374 p29yp934hytgadasdaerefrwat43",
+							"type": "text"
+						},
+						{
+							"key": "test[]",
+							"value": "aaa",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "test[]",
+							"value": "bbb",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "test[]",
+							"value": "ccc",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:2000/add-email",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2000",
+					"path": [
+						"add-email"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send sms",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "123456789abcdefg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "phone_no[]",
+							"value": "09154056342",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "welcome-sms",
+							"type": "text"
+						},
+						{
+							"key": "parameters[]",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/notification/email/template",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"notification",
+						"email",
+						"template"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "index email templates",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/notification/email/template",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"notification",
+						"email",
+						"template"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "index a email template",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/notification/email/template/1",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"notification",
+						"email",
+						"template",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add new email template",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "update an exists template",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "Moein123456789adbc1234",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://127.0.0.1:8000/api\n",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "{{BASE_URL}}",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
