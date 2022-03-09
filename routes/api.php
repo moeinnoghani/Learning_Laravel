@@ -31,7 +31,9 @@ Route::middleware(['after_middleware','authenticate'])->prefix('/notification')-
 
     Route::post('/email', [\App\Http\Controllers\NotificationController::class, 'send']);
     Route::get('/email/template', [\App\Http\Controllers\TemplateController::class, 'index']);
+    Route::post('/email/template', [\App\Http\Controllers\TemplateController::class, 'store']);
     Route::get('/email/template/{template_id}', [\App\Http\Controllers\TemplateController::class, 'get']);
+    Route::put('/email/template/{template_id}', [\App\Http\Controllers\TemplateController::class, 'update']);
     Route::post('/sms', [\App\Http\Controllers\SMSController::class, 'send']);
 });
 

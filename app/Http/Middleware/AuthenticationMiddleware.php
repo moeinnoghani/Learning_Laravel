@@ -16,6 +16,7 @@ class AuthenticationMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+
         return $next($request);
     }
 }

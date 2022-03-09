@@ -23,4 +23,5 @@ class Template extends Model
         'is_active',
     ];
 
+    public $timestamps = false;
 }

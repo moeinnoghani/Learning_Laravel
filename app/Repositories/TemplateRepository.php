@@ -35,5 +35,15 @@ class TemplateRepository
         return $this->model->whereId($template_id)->first();
     }
 
+    public function create($request)
+    {
+        return $this->model->create($request);
+    }
+
+    public function update(Template $template, $fieldsForUpdate)
+    {
+        return tap($template)->update($fieldsForUpdate);
+
+    }
 
 }

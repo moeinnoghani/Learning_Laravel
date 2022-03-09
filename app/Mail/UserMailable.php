@@ -35,7 +35,7 @@ class UserMailable extends Mailable
         $this->parameters = $request['parameters'];
         $this->subject_parameters = $request['subject_parameters'];
 
-        $this->templateView = $this->emailTemplate['view_map'] ?? 'mail' . $this->emailTemplate['name'];
+        $this->templateView = $this->emailTemplate['view_map'] ?? 'mail.' . $this->emailTemplate['name'];
 
 
         $this->subjectBuilder();
