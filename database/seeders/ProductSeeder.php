@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Email;
+use App\Models\Cycle;
+use App\Models\Product;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class ProductSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +16,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(ProductSeeder::class);
-        $this->call(UserSeeder::class);
+        Product::factory()->count(10)->create()->each(function ($product) {
+            Cycle::factory()->create(['product_id' => $product->id]);
+        });
     }
 }

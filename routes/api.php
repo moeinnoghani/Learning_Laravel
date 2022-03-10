@@ -27,7 +27,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //Route::get('/notification/email/template/{template_id}', [\App\Http\Controllers\TemplateController::class, 'get']);
 
 
-Route::middleware(['after_middleware','authenticate'])->prefix('/notification')->group(function () {
+Route::middleware(['after_middleware', 'authenticate'])->prefix('/notification')->group(function () {
 
     Route::post('/email', [\App\Http\Controllers\NotificationController::class, 'send']);
     Route::get('/email/template', [\App\Http\Controllers\TemplateController::class, 'index']);
@@ -35,6 +35,44 @@ Route::middleware(['after_middleware','authenticate'])->prefix('/notification')-
     Route::get('/email/template/{template_id}', [\App\Http\Controllers\TemplateController::class, 'get']);
     Route::put('/email/template/{template_id}', [\App\Http\Controllers\TemplateController::class, 'update']);
     Route::post('/sms', [\App\Http\Controllers\SMSController::class, 'send']);
+});
+
+Route::post('/testServices', function (Request $request) use (&$newCredit, &$sumOfServiceAmounts, &$credit) {
+    $services = $request->services;
+    $credit = $request->credit;
+    sort($services);
+
+    $sumOfServiceAmounts;
+    $newCredit;
+
+
+//    foreach ($services as $serviceAmount) {
+//        $sumOfServiceAmounts += ($serviceAmount);
+//    }
+//
+//    foreach ($services as $item) {
+//        $exTime = $credit / $sumOfServiceAmounts;
+//        $credit -= ($exTime * $item);
+//        printf('Service ' . $item . '$ ' . 'will be expire after' . round($exTime) . PHP_EOL . PHP_EOL);
+//
+//    }
+
+    for ($i = 0; $i < count($services); $i++) {
+        for ($j = $i; $j < count($services); $j++) {
+            $sumOfServiceAmounts += $services[$j];
+        }
+
+
+        $exTime = round($credit / $sumOfServiceAmounts);
+        $credit = $credit - ($exTime * $services[$i]);
+
+        printf('Service ' . $services[$i] . '$ ' . 'will be expire after' . round($exTime) . PHP_EOL . PHP_EOL);
+
+        $sumOfServiceAmounts = 0;
+
+    }
+
+
 });
 
 

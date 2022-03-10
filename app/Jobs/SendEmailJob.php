@@ -7,6 +7,7 @@ use App\Mail\UserMailable;
 //use http\Env\Request;
 use App\Models\Template;
 use App\Repositories\TemplateRepository;
+use Illuminate\Bus\Batchable;
 use Illuminate\Http\Request;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Mail;
 
 class SendEmailJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels,Batchable;
 
     private $email;
     private  $template;
