@@ -46,17 +46,6 @@ Route::post('/testServices', function (Request $request) use (&$newCredit, &$sum
     $newCredit;
 
 
-//    foreach ($services as $serviceAmount) {
-//        $sumOfServiceAmounts += ($serviceAmount);
-//    }
-//
-//    foreach ($services as $item) {
-//        $exTime = $credit / $sumOfServiceAmounts;
-//        $credit -= ($exTime * $item);
-//        printf('Service ' . $item . '$ ' . 'will be expire after' . round($exTime) . PHP_EOL . PHP_EOL);
-//
-//    }
-
     for ($i = 0; $i < count($services); $i++) {
         for ($j = $i; $j < count($services); $j++) {
             $sumOfServiceAmounts += $services[$j];
@@ -74,6 +63,8 @@ Route::post('/testServices', function (Request $request) use (&$newCredit, &$sum
 
 
 });
+
+Route::get('/serviceHours/{id}', [\App\Http\Controllers\UserController::class, 'getServicesHours']);
 
 
 

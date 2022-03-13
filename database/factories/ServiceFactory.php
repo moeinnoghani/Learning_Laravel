@@ -27,7 +27,7 @@ class ServiceFactory extends Factory
                 Service::STATUS_EXPIRED,
                 Service::STATUS_SUSPEND
             ]),
-            'statred_at'=>Carbon::now()->subHour(rand(1,72)),
+            'started_at'=>Carbon::now()->subHour(rand(1,72)),
             'expired_at'=>Carbon::now()->addHour(rand(1,2))->addMinute(rand(1,59))
 
 

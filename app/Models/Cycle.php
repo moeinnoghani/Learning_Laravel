@@ -10,4 +10,9 @@ class Cycle extends Model
     use HasFactory;
 
     const CYCLE_HORLY = 'hourly';
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }
