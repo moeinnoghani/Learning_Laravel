@@ -9,6 +9,12 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
+    protected $casts = [
+        'is_active' => 'boolean'
+    ];
+
     public function services()
     {
         return $this->hasMany(Service::class);

@@ -15,14 +15,17 @@ class UserRepository
         $this->model = new User();
     }
 
-    public function getActiveServices(User $user)
+    public function getActiveServices($user)
     {
-        return Service::where('status', Service::STATUS_ACTIVE)->where('expired_at', '<', now())->get();
+        return $this->getUser($user)
+            ->services()
+            ->where('status', Service::STATUS_ACTIVE)
+            ->orderBy('expired_at')->get();
     }
 
     public function getUser($user_id)
     {
-        return $this->model->whereId($user_id)->first();
+        return $this->model->with(['services'])->whereId($user_id)->first();
     }
 
 

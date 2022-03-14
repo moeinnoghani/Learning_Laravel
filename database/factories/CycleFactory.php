@@ -19,7 +19,7 @@ class CycleFactory extends Factory
     {
         return [
             'product_id' => rand(1, 1000),
-            'period' => Cycle::CYCLE_HORLY,
+            'period' => Cycle::CYCLE_HOURLY,
             'amount' => $this->faker->randomElement([100, 500, 1000])
         ];
     }
